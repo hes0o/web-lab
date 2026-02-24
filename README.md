@@ -6,11 +6,12 @@ Bu laboratuvar çalışmasında, modern web standartlarına uygun, erişilebilir
  Teslim Kontrol Listesi
 - [✅] **Semantik Yapı:** `<header>`, `<nav>`, `<main>`, `<section>` ve `<footer>` etiketleri amacına uygun kullanıldı.
 - [✅] **Heading Hiyerarşisi:** Başlıklar `<h1>`'den `<h3>`'e kadar hiyerarşik sırada (atlama yapmadan) kullanıldı.
-- [✅] **Erişilebilirlik (a11y):** - [x] Tüm görsellere anlamlı `alt` metinleri eklendi.
+- [✅] **Erişilebilirlik (a11y):** - Tüm görsellere anlamlı `alt` metinleri eklendi.
 - [✅] "Ana içeriğe atla" (Skip Link) bağlantısı oluşturuldu.
 - [✅] Klavye navigasyonu (Tab) ve odak göstergesi (Focus indicator) optimize edildi.
-- [✅] **Form Yönetimi:** - [x] Tüm inputlar için `<label>` (htmlFor) ilişkisi kuruldu.
-- [✅] - [x] `required` ve `minLength` gibi HTML5 doğrulama öznitelikleri eklendi.
+- [✅] **Form Yönetimi:** -  Tüm inputlar için `<label>` (htmlFor) ilişkisi kuruldu.
+- [✅] `required` ve `minLength` gibi HTML5 doğrulama öznitelikleri eklendi.
 - [✅] Hata mesajları için `role="alert"` ve `aria-describedby` alanları hazırlandı.
-- [✅] **Lighthouse Testi:** Erişilebilirlik puanı 90+ seviyesine ulaşıldı.
+- [✅] **Lighthouse Testi:** Erişilebilirlik puanı 90+ seviyesine ulaşıldı.(100)
 - [✅] **Git İş Akışı:** Proje branch yapısı kullanılarak geliştirildi ve en az 3 anlamlı commit atıldı.
+
