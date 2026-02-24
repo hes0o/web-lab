@@ -1,38 +1,19 @@
 <!doctype html>
-<!--
-  LAB-2: lang="tr" — DİL ZORUNLU!
-  Lighthouse kontrol eder. Sayfa dili belirtilmezse ekran okuyucular
-  yanlış telaffuz kullanır ve erişilebilirlik puanı düşer.
--->
+<!-- lang="tr" - sayfa dilini belirt, lighthouse bunu kontrol eder -->
 <html lang="tr">
 
 <head>
   <meta charset="UTF-8" />
-  <!--
-      viewport meta — Mobil uyumlu responsive tasarım için zorunlu.
-      width=device-width : Ekran genişliğini cihaz genişliğine eşitler.
-      initial-scale=1    : Başlangıç zoom seviyesi.
-    -->
+  <!-- mobil uyumluluk icin gerekli -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!--
-      SEO meta etiketleri — Lighthouse "Best Practices" kategorisi kontrol eder.
-      description: Arama motorunda sayfanın altında görünen özet metin.
-    -->
-  <meta name="description"
-    content="Hassan Chawa kişisel portföy sayfası — Full Stack Developer, semantik HTML5 ve erişilebilir web tasarımı." />
-
+  <!-- SEO icin aciklama -->
+  <meta name="description" content="Hassan Chawa kişisel portföy sayfası — Full Stack Developer." />
   <title>Hassan Chawa — Kişisel Portföy</title>
 </head>
 
 <body>
-  <!--
-      React uygulaması bu div'e mount edilir.
-      main.tsx → App.tsx içeriği buraya render olur.
-    -->
+  <!-- react uygulamasi buraya mount edilir -->
   <div id="root"></div>
-
-  <!-- Vite'ın React uygulamasını yükleyen script -->
   <script type="module" src="/src/main.tsx"></script>
 </body>
 

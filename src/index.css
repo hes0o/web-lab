@@ -1,15 +1,10 @@
-/*
-  index.css — Global stil sıfırlama
-  Bu dosya Vite'ın main.tsx'i aracılığıyla tüm sayfaya uygulanır.
-  Bileşen-özel stiller App.css içindedir.
-*/
+/* global stiller - app.css'e ek olarak */
 
-/* Smooth scroll — Sayfa içi bağlantılara tıklandığında yumuşak kaydırma */
+/* sayfa ici link tiklaninca yumusak kaydir */
 html {
   scroll-behavior: smooth;
 }
 
-/* Temel body sıfırlama */
 body {
   margin: 0;
   min-height: 100vh;

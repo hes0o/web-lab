@@ -4,13 +4,16 @@ function App() {
   return (
     <div className="container">
 
+      {/* skip link - klavye kullanicilari icin */}
       <a href="#main-content" className="skip-link">
         Ana içeriğe atla
       </a>
 
+      {/* header - sayfa baslik alani */}
       <header className="site-header">
         <div className="header-inner">
           <h1>Hassan Chawa</h1>
+          {/* nav - ana navigasyon, aria-label ile etiketlendi */}
           <nav aria-label="Ana navigasyon">
             <ul className="nav-links">
               <li><a href="#hakkimda">Hakkımda</a></li>
@@ -21,11 +24,15 @@ function App() {
         </div>
       </header>
 
+      {/* main - sayfanin ana icerigi, sayfada sadece bir tane olmali */}
       <main id="main-content">
 
+        {/* section - tematik icerik blogu, h2 ile basmali */}
         <section id="hakkimda" className="section-card">
           <h2>Hakkımda</h2>
           <div className="profile-grid">
+
+            {/* figure + img + figcaption - gorsel ve aciklamasi */}
             <figure>
               <img
                 src="https://api.dicebear.com/7.x/initials/svg?seed=HC&backgroundColor=1e3a8a&fontColor=ffffff"
@@ -36,12 +43,15 @@ function App() {
               />
               <figcaption>Full Stack Developer — Hassan Chawa</figcaption>
             </figure>
+
             <div className="about-text">
               <p>
                 Merhaba! Web teknolojileri, erişilebilir arayüz tasarımı ve yapay
                 zeka entegrasyonu üzerine çalışan bir yazılım geliştiricisiyim.
               </p>
+              {/* h3 - h2 altinda alt baslik, seviye atlamadim */}
               <h3>Kullandığım Teknolojiler</h3>
+              {/* ul - sirasi onemli degil, unsorted list */}
               <ul className="tech-list">
                 <li>HTML5 &amp; CSS3</li>
                 <li>React &amp; TypeScript</li>
@@ -52,6 +62,7 @@ function App() {
           </div>
         </section>
 
+        {/* her proje article icinde - bagimsiz icerik */}
         <section id="projeler" className="section-card">
           <h2>Projelerim</h2>
           <div className="project-grid">
@@ -71,6 +82,7 @@ function App() {
                 C# .NET ve Avalonia UI ile geliştirilmiş; reception, doktor ve
                 hemşire panellerini kapsayan tam entegre klinik yönetim sistemi.
               </p>
+              {/* aside - ana icerikle dolayli iliskili yan bilgi */}
               <aside className="tech-tags" aria-label="Kullanılan teknolojiler">
                 <span>C#</span>
                 <span>.NET</span>
@@ -104,13 +116,17 @@ function App() {
           </div>
         </section>
 
+        {/* iletisim formu - noValidate ile kendi hatalarimizi gosterecegiz */}
         <section id="iletisim" className="section-card">
           <h2>İletişim</h2>
           <form action="#" method="POST" noValidate>
+
+            {/* fieldset - ilgili alanlari gruplar, legend basligini gosterir */}
             <fieldset>
               <legend>İletişim   Formu</legend>
 
               <div className="form-group">
+                {/* label for ile input id eslesmeli - erisilebilirlik icin zorunlu */}
                 <label htmlFor="name">Ad Soyad:</label>
                 <input
                   type="text"
@@ -121,6 +137,7 @@ function App() {
                   placeholder="örn. Hassan Chawa"
                   aria-describedby="name-error"
                 />
+                {/* role=alert - js hata yazinca ekran okuyucu otomatik okur */}
                 <small id="name-error" className="error-msg" role="alert"></small>
               </div>
 
@@ -137,6 +154,7 @@ function App() {
                 <small id="email-error" className="error-msg" role="alert"></small>
               </div>
 
+              {/* select - acilir liste, ilk option bos = required ile calisir */}
               <div className="form-group">
                 <label htmlFor="subject">Konu:</label>
                 <select
@@ -153,6 +171,7 @@ function App() {
                 <small id="subject-error" className="error-msg" role="alert"></small>
               </div>
 
+              {/* textarea - cok satirli metin alani */}
               <div className="form-group">
                 <label htmlFor="message">Mesajınız:</label>
                 <textarea
@@ -177,6 +196,7 @@ function App() {
 
       </main>
 
+      {/* footer - alt bilgi, telif hakki ve sosyal linkler */}
       <footer className="site-footer">
         <p>&copy; 2026 Hassan Chawa. Tüm hakları saklıdır.</p>
         <ul className="social-links">
