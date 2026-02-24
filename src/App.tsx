@@ -108,7 +108,7 @@ function App() {
           <h2>İletişim</h2>
           <form action="#" method="POST" noValidate>
             <fieldset>
-              <legend>İletişim Formu</legend>
+              <legend>İletişim   Formu</legend>
 
               <div className="form-group">
                 <label htmlFor="name">Ad Soyad:</label>
