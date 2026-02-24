@@ -1,42 +1,494 @@
-#root {
-  max-width: 1280px;
+/* ═══════════════════════════════════════════════════════════════════════════
+   LAB-2 — Ana stil dosyası (App.css)
+   Bölümler:
+     1. Genel Sıfırlama (Reset)
+     2. Tipografi & Renk Değişkenleri
+     3. Skip Link (Erişilebilirlik)
+     4. Focus Göstergesi — ASLA kaldırma!
+     5. Layout: Kapsayıcı & Header & Nav
+     6. Ana Bölüm (main) & Section Kartları
+     7. Hakkımda: Profil Grid
+     8. Teknoloji Listesi
+     9. Projelerim: Proje Kartları & Tech Tags
+    10. İletişim: Form, Fieldset, Input, Select, Textarea
+    11. Hata Mesajları
+    12. Footer & Sosyal Bağlantılar
+    13. Geçiş Animasyonları
+   ─────────────────────────────────────────────────────────────────────────── */
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   1. GENEL SIFIRLAMA (Reset)
+   Neden: Her tarayıcının varsayılan margin/padding değerleri farklıdır.
+   Sıfırlayarak tutarlı başlangıç noktası elde ederiz.
+   box-sizing: border-box → padding ve border, genişliğin içinde sayılır.
+   ═══════════════════════════════════════════════════════════════════ */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   2. TİPOGRAFİ & RENK DEĞİŞKENLERİ
+   CSS Custom Properties (değişkenler) tek yerden renk/font yönetimi sağlar.
+   ═══════════════════════════════════════════════════════════════════ */
+:root {
+  /* Renk paleti */
+  --color-primary:     #1e3a8a;   /* Koyu mavi  */
+  --color-primary-alt: #2563eb;   /* Parlak mavi (hover, focus) */
+  --color-accent:      #38bdf8;   /* Açık mavi  */
+  --color-bg:          #f8fafc;   /* Sayfa arka plan */
+  --color-surface:     #ffffff;   /* Kart arka plan */
+  --color-text:        #0f172a;   /* Metin rengi */
+  --color-muted:       #64748b;   /* İkincil metin */
+  --color-border:      #cbd5e1;   /* Kenarlık */
+  --color-error:       #dc2626;   /* Hata kırmızısı */
+  --color-success:     #16a34a;   /* Başarı yeşili */
+
+  /* Tipografi */
+  --font-body:    'Segoe UI', system-ui, sans-serif;
+  --font-mono:    'Fira Code', monospace;
+
+  /* Boşluklar */
+  --radius:  8px;
+  --shadow:  0 2px 12px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 6px 24px rgba(0, 0, 0, 0.14);
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   3. SKIP LINK (İÇERİĞE ATLA)
+   Ekranda GÖRÜNMEZ; yalnızca Tab tuşuyla focus aldığında belirir.
+   Motor engelli ve ekran okuyucu kullanıcıları nav'ı atlayıp
+   doğrudan içeriğe geçebilir.
+   ═══════════════════════════════════════════════════════════════════ */
+.skip-link {
+  position: absolute;
+  top: -120px;           /* Ekranın dışında — gizli */
+  left: 0;
+  background: var(--color-primary);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 0 0 var(--radius) 0;
+  font-weight: 700;
+  text-decoration: none;
+  z-index: 9999;
+  transition: top 0.2s ease;
+}
+
+/* Tab ile focus geldiğinde görünür hale gelir */
+.skip-link:focus {
+  top: 0;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   4. FOCUS GÖSTERGESİ — ASLA KALDIRMA!
+   outline: none yazmak klavye kullanıcılarını kör eder.
+   Bu stil tüm etkileşimli elemanlarda focus'u görünür kılar.
+   ═══════════════════════════════════════════════════════════════════ */
+:focus-visible {
+  outline: 3px solid var(--color-primary-alt);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   5. LAYOUT: KAPSAYICI & HEADER & NAV
+   ═══════════════════════════════════════════════════════════════════ */
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header ───────────────────────────────────────────────────────── */
+.site-header {
+  background: var(--color-primary);
+  color: #fff;
+  position: sticky;   /* Sayfa kaydırılırken üstte kalır */
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.header-inner {
+  max-width: 1000px;
   margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* h1 — Site başlığı */
+.site-header h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: #fff;
+}
+
+/* ── Nav ──────────────────────────────────────────────────────────── */
+.nav-links {
+  list-style: none;      /* Ok noktaları kaldır */
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 4px 2px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   6. ANA BÖLÜM (main) & SECTION KARTLARI
+   ═══════════════════════════════════════════════════════════════════ */
+main {
+  flex: 1;               /* Kalan yüksekliği doldurur → footer alta yapışır */
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* Her section bir kart olarak stillendirildi */
+.section-card {
+  background: var(--color-surface);
+  border-radius: var(--radius);
   padding: 2rem;
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.25s ease;
+}
+
+.section-card:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+/* Bölüm başlıkları (h2) */
+.section-card > h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--color-accent);
+  display: inline-block;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   7. HAKKıMDA: PROFİL GRID
+   ═══════════════════════════════════════════════════════════════════ */
+.profile-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 600px) {
+  .profile-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+/* Profil fotoğrafı */
+.profile-img {
+  border-radius: 50%;
+  border: 4px solid var(--color-primary);
+  display: block;
+}
+
+figure {
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+figcaption {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  margin-top: 0.4rem;
+  font-style: italic;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* h3 — Bölüm içi alt başlık */
+.about-text h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin: 1rem 0 0.5rem;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   8. TEKNOLOJİ LİSTESİ
+   ═══════════════════════════════════════════════════════════════════ */
+.tech-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tech-list li {
+  background: var(--color-primary);
+  color: #fff;
+  padding: 3px 12px;
+  border-radius: 999px;   /* Pill şekli */
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   9. PROJELERİM: PROJE KARTLARI & TECH TAGS
+   ═══════════════════════════════════════════════════════════════════ */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.project-item {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* h3 — Proje adı */
+.project-item h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+/* Proje görseli */
+.project-img {
+  width: 100%;
+  height: auto;
+  border-radius: calc(var(--radius) - 2px);
+  object-fit: cover;
+}
+
+/* aside — Kullanılan teknoloji etiketleri */
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: auto;    /* Kartın altına yapışır */
+}
+
+.tech-tags span {
+  background: #e0f2fe;
+  color: var(--color-primary);
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   10. İLETİŞİM: FORM, FIELDSET, INPUT, SELECT, TEXTAREA
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* fieldset — Görsel grup kutusu */
+fieldset {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+
+/* legend — Grubun başlığı */
+legend {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-primary);
+  padding: 0 0.5rem;
+}
+
+/* Her soru/input grubu */
+.form-group {
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* label — Her zaman block; üstte görünür */
+label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.35rem;
+  color: var(--color-text);
+}
+
+/* input, textarea, select — Ortak stiller */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input[type="number"],
+input[type="password"],
+textarea,
+select {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius);
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  background: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Focus stilinde kenarlık mavi olur — ASLA outline: none yazma */
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--color-primary-alt);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  outline: none;   /* outline yerine box-shadow kullanıyoruz — görsel eşdeğer */
+}
+
+/* HTML5 built-in doğrulama: geçersiz ama ziyaret edilmiş alan */
+input:not(:focus):not(:placeholder-shown):invalid,
+textarea:not(:focus):not(:placeholder-shown):invalid {
+  border-color: var(--color-error);
+}
+
+textarea {
+  resize: vertical;   /* Yalnızca dikey yeniden boyutlandırma */
+  min-height: 120px;
+}
+
+/* Gönder butonu */
+.btn-submit {
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  padding: 0.7rem 2rem;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  margin-top: 0.5rem;
+}
+
+.btn-submit:hover {
+  background: var(--color-primary-alt);
+  transform: translateY(-1px);
+}
+
+.btn-submit:active {
+  transform: translateY(0);
+}
+
+.btn-submit:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   11. HATA MESAJLARI
+   role="alert" olan <small> elementleri — başlangıçta boş,
+   JS hata mesajı yazınca görünür hale gelir.
+   ═══════════════════════════════════════════════════════════════════ */
+.error-msg {
+  color: var(--color-error);
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-top: 0.3rem;
+  min-height: 1.2em;   /* Mesaj gelmeden önce layout kaymaz */
+  display: block;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   12. FOOTER & SOSYAL BAĞLANTILAR
+   ═══════════════════════════════════════════════════════════════════ */
+.site-footer {
+  background: var(--color-primary);
+  color: rgba(255,255,255,0.85);
+  text-align: center;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.social-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.social-links a {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+.social-links a:hover,
+.social-links a:focus-visible {
+  color: #fff;
+  text-decoration: underline;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   13. GEÇİŞ ANİMASYONLARI — kullanıcı "hareketi azalt" istiyorsa kapat
+   ═══════════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
