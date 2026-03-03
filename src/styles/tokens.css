@@ -1,0 +1,14 @@
+:root {
+  /* Renk Paleti */
+  --color-primary: #1E3A8A;
+  --color-surface: #F9FAFB;
+  --color-border: #E5E7EB;
+  
+  /* Boşluk (Spacing) Skalası */
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  
+  /* Fluid Typography */
+  --text-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  --text-3xl: clamp(2rem, 1.2rem + 3vw, 3.5rem);
+}
