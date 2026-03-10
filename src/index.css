@@ -1,7 +1,52 @@
 /* global stiller - app.css'e ek olarak */
 
 /* sayfa ici link tiklaninca yumusak kaydir */
+@import 'tailwindcss';
 @import './styles/tokens.css';
+
+
+@theme {
+  --color-primary: var(--color-primary);
+  --color-secondary: var(--color-secondary);
+  --color-accent: var(--color-accent);
+  --color-bg: var(--color-bg);
+  --color-text: var(--color-text);
+  --color-muted: var(--color-muted);
+  --color-surface: var(--color-surface);
+  --color-border: var(--color-border);
+  --color-error: var(--color-error);
+  --color-success: var(--color-success);
+
+  --font-family-sans: system-ui, -apple-system, sans-serif;
+  --font-family-mono: 'Fira Code', 'Consolas', monospace;
+
+  --font-size-sm: var(--text-sm);
+  --font-size-base: var(--text-base);
+  --font-size-lg: var(--text-lg);
+  --font-size-xl: var(--text-xl);
+  --font-size-2xl: var(--text-2xl);
+  --font-size-3xl: var(--text-3xl);
+
+  --spacing-xs: var(--space-xs);
+  --spacing-sm: var(--space-sm);
+  --spacing-md: var(--space-md);
+  --spacing-lg: var(--space-lg);
+  --spacing-xl: var(--space-xl);
+  --spacing-2xl: var(--space-2xl);
+  --spacing-3xl: var(--space-3xl);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-full: var(--radius-full);
+
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+
+  --transition-fast: var(--transition-fast);
+  --transition-normal: var(--transition-normal);
+}
 
 body {
   font-size: var(--text-base);
