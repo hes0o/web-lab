@@ -1,54 +1,34 @@
-import type {
-    Project, Category, SortField, SortOrder
-} from "../types/project";
+import type { Project, Category, SortField, SortOrder } from "../types/project";
 
-// --- Arama filtresi ---
-export function filterBySearch(
-    projects: Project[],
-    query: string
-): Project[] {
+// 1. Filter by Search Query (Title, Description, or Tech) [cite: 1040, 1525]
+export function filterBySearch(projects: Project[], query: string): Project[] {
     if (!query.trim()) return projects;
-
     const lower = query.toLowerCase();
     return projects.filter(p =>
         p.title.toLowerCase().includes(lower) ||
         p.description.toLowerCase().includes(lower) ||
-        p.tech.some(t =>
-            t.toLowerCase().includes(lower)
-        )
+        p.tech.some(t => t.toLowerCase().includes(lower))
     );
 }
 
-// --- Kategori filtresi ---
-export function filterByCategory(
-    projects: Project[],
-    category: Category | "all"
-): Project[] {
+// 2. Filter by Category [cite: 1070]
+export function filterByCategory(projects: Project[], category: Category | "all"): Project[] {
     if (category === "all") return projects;
-    return projects.filter(
-        p => p.category === category
-    );
+    return projects.filter(p => p.category === category);
 }
 
-// --- Siralama ---
-export function sortProjects(
-    projects: Project[],
-    field: SortField,
-    order: SortOrder
-): Project[] {
+// 3. Sort Projects (by Year or Title) [cite: 1087]
+export function sortProjects(projects: Project[], field: SortField, order: SortOrder): Project[] {
     const sorted = [...projects].sort((a, b) => {
         if (field === "year") {
-            return a.year - b.year;
+            return a.year - b.year; // [cite: 1102]
         }
-        return a.title.localeCompare(b.title, "tr");
+        return a.title.localeCompare(b.title, "tr"); // [cite: 1104]
     });
-
-    return order === "desc"
-        ? sorted.reverse()
-        : sorted;
+    return order === "desc" ? sorted.reverse() : sorted;
 }
 
-// --- Hepsini birlestir ---
+// 4. Combined Filter Function [cite: 1128]
 export function applyFilters(
     projects: Project[],
     search: string,
