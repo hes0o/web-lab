@@ -58,7 +58,7 @@ export default function App() {
             id="search"
             placeholder="Proje ara..."
             value={search}
-            onChange={e => setSearch(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)}
           />
 
           <div className="flex gap-2 flex-wrap">
@@ -99,9 +99,11 @@ export default function App() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map(project => (
             <Card
-              key={project.id} // [Requirement 1474]
+              key={project.id}
               title={project.title}
               image={project.image}
+              imageAlt={project.title}
+              footer={null}
             >
               <p className="text-sm mb-3">{project.description}</p>
               <div className="flex flex-wrap gap-1">
